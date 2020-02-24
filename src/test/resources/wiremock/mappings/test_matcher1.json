@@ -1,0 +1,9 @@
+{
+  "request": {
+    "urlPath": "/test_wiremock",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200
+  }
+}
