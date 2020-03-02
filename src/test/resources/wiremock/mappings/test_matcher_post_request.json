@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPath": "/test_wiremock/new_user",
+    "method": "POST"
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "post_response.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
