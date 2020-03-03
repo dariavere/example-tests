@@ -44,9 +44,5 @@ public class ExampleGetTest {
                 get(base_url + wiremockPort + "/test_wiremock").
                 then().
                 statusCode(200);
-
-
     }
-
-
 }
