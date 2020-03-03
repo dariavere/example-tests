@@ -5,7 +5,7 @@
   },
   "response": {
     "status": 201,
-    "bodyFileName": "post_response.json",
+    "bodyFileName": "post.json",
     "headers": {
       "Content-Type": "application/json"
     }

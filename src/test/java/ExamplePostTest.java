@@ -32,14 +32,13 @@ public class ExamplePostTest {
         });
 
         int wiremockPort = wiremock.getMappedPort(8080);
-        System.out.println(wiremockPort);
 
         Thread.sleep(5000);
 
         String base_url = "http://localhost:";
 
         given().
-                body("wiremock/__files/post_request_body.json").
+                body("post_request_body.json").
                 post(base_url + wiremockPort + "/test_wiremock/new_user").
                 then().
                 statusCode(201);
