@@ -34,7 +34,6 @@ public class ExampleGetTest {
         });
 
         int wiremockPort = wiremock.getMappedPort(8080);
-        System.out.println(wiremockPort);
 
         Thread.sleep(5000);
 
