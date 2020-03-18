@@ -5,6 +5,7 @@ import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.function.Consumer;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -16,13 +17,13 @@ public class ExampleTests {
 
     int wiremockPort;
 
-    GenericContainer wiremock;
-
     @Before
     public void tryToStartContainer() throws InterruptedException {
 
-        wiremock = new GenericContainer(new ImageFromDockerfile()
-                .withFileFromPath(".", Path.of("src/test/resources/wiremock")));
+        GenericContainer wiremock = new GenericContainer(new ImageFromDockerfile()
+                .withFileFromPath(".", Path.of("src/test/resources/wiremock")))
+                .withExposedPorts(8080)
+                .withStartupTimeout(Duration.ofSeconds(60));
 
         wiremock.start();
 
@@ -39,7 +40,7 @@ public class ExampleTests {
 
         wiremockPort = wiremock.getMappedPort(8080);
 
-        Thread.sleep(5000);
+        System.out.println(wiremockPort);
 
     }
 
