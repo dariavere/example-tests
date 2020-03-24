@@ -1,21 +1,21 @@
-version: '3.3'
+version: '2.4'
 
 services:
-
-  db:
-    image: postgres:9.6.1
-    environment:
-      POSTGRES_PASSWORD: adminadmin
-      POSTGRES_DB: workflow
-
-  app:
-    image: imixs/imixs-microservice
-    environment:
-      WILDFLY_PASS: adminadmin
-      POSTGRES_HOST: "db"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "adminadmin"
-      POSTGRES_DATABASE: "workflow"
-      POSTGRES_CONNECTION: "jdbc:postgresql://db/workflow"
+  zookeeper:
+    image: wurstmeister/zookeeper
     ports:
-      - "8080:8080"
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      volumes:
+       /var/run/docker.sock:/var/run/docker.sock
+    links:
+      - zookeeper
+    depends_on:
+      - zookeeper
